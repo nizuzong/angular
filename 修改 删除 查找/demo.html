@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+
+<audio id="music2" src="music.mp3"  loop="loop">你的浏览器不支持audio标签。</audio> 
+<a href="javascript:playPause();"><img src="pause.gif" width="48" height="50" id="music_btn2" border="0"></a>
+<script>
+
+	function playPause() { 
+    var music = document.getElementById('music2'); 
+    var music_btn = document.getElementById('music_btn2'); 
+    if (music.paused){ 
+        music.play(); 
+        music_btn.src = 'play.gif'; 
+    } 
+    else{ 
+        music.pause(); 
+        music_btn.src = 'pause.gif';  
+    } 
+} 
+</script>
+	
+</body>
+</html>

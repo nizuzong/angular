@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/reset.css"/>
+    <link rel="stylesheet" href="css/common.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+    <title>day13</title>
+</head>
+<body ng-controller="controller">
+<div class="box">
+    <p><span>状态 </span><select name="" id="">
+        <option value="all">全部</option>
+    </select><span>名称</span><input type="text" ng-model="filter"/>
+        <button ng-click="fn(filter)">查询</button>
+    </p>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <td>ID</td>
+            <td>名称</td>
+            <td>状态</td>
+            <td>序号</td>
+            <td>创建时间</td>
+            <td>操作</td>
+        </tr> 
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in data | filter:value">
+            <td>{{item.id}} <input type="text" ng-show="{{'isedit'+$index}}" ng-model="item.id"></td>
+            <td>{{item.name}}<input type="text" ng-show="{{'isedit'+$index}}" ng-model="item.name"></td>
+            <td>{{item.status}}<input type="text" ng-show="{{'isedit'+$index}}" ng-model="item.status"></td>
+            <td>{{item.num}}<input type="text" ng-show="{{'isedit'+$index}}" ng-model="item.num"></td>
+            <td>{{item.time}}<input type="text" ng-show="{{'isedit'+$index}}" ng-model="item.time"></td>
+            <td><span class="edit" ng-click = "edit($event,$index,'isedit'+$index)">修改</span>| <span class="del" ng-click="del(item.id)">删除</span>  </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script src="./angularjs/angular.min.js"></script>
+<script>
+    angular.module("myApp", [])
+            .controller("controller", ['$scope', function ($scope) {
+                $scope.data = [
+                    {id: 1, name: "管理员", status: "状态", num: 0, time: "2017-9-5"},
+                    {id: 2, name: "指导人", status: "状态", num: 0, time: "2017-9-5"},
+                    {id: 3, name: "管理员", status: "状态", num: 0, time: "2017-9-6"}
+                ];
+                $scope.fn = function(filter){
+                    $scope.value = filter
+                };
+                $scope.del = function(id){
+                    for(var i=0;i<$scope.data.length;i++){
+                        if($scope.data[i].id == id){
+                            $scope.data.splice(i,1)
+                        }
+                    }
+                }
+                $scope.edit = function(event,index,flag){
+                    $scope[flag] = !$scope[flag]
+                }
+            }])
+</script>
+</body>
+</html>

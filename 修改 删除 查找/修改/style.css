@@ -1,0 +1,29 @@
+.box{
+	margin-top: 20px;
+
+}
+.box em{
+	font-style: normal;
+	display: inline-block;
+	width: 60px;
+	height: 20px;
+	text-align: center;
+	line-height: 20px;
+	border:1px solid black;
+}
+p{
+	color: skyblue;
+}
+ul{
+	display: flex;
+}
+ul li{
+	flex:1;
+	border-bottom: 1px solid #ccc;
+	text-align: center;
+	list-style: none;
+
+}
+ul li span{
+	cursor: pointer;
+}

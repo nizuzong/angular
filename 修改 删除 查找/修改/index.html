@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myapp">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body ng-controller="main">
+	<div class="box">
+		<span>状态</span><em>全部</em><span>名称</span><input type="text" ng-model="msg"><button ng-click="fn()">查询</button>
+	</div>
+	<p>列表</p>
+	<ul>
+		<li>ID</li>
+		<li>名称</li>
+		<li>状态</li>
+		<li>序号</li>
+		<li>创建时间</li>
+		<li>操作</li>
+	</ul>
+	<ul ng-repeat="items in data | filter : con | orderBy: 'id' ">
+		<li >{{items.id}}</li>
+		<li>{{items.name}}</li>
+		<li>{{items.state}}</li>
+		<li>{{items.xuhao}}</li>
+		<li>{{items.time}}</li>
+		<li >
+		    <span ng-click="change(items)">修改 |</span>
+		    <span ng-click="clickfn(items)">删除 |</span>
+		    <span>赋全</span>
+		</li>
+	</ul>
+	<!-- <div class="zhe">
+		<p><input type="text" ng-model="one"></p>
+		<p><input type="text" ng-model="two"></p>
+		<p><input type="text" ng-model="there"></p>
+		<p><input type="text" ng-model="four"></p>
+		<p><input type="text" ng-model="five"></p>
+	</div> -->
+</body>
+<script src="angular.min.js"></script>
+<script >
+	
+	angular.module('myapp',[])
+	       .controller('main',['$scope',function($scope){
+
+	       	$scope.data=[
+			       	{
+			       		id:1,
+			       		name:'管理员',
+			       		state:'启用',
+			       		xuhao:0,
+			       		time:'2014-07-24 16:35'
+			       	},
+			       	{
+			       		id:2,
+			       		name:'管理员1',
+			       		state:'启用',
+			       		xuhao:2,
+			       		time:'2014-07-24 16:35'
+
+
+			       	},
+			       	{
+			       		id:3,
+			       		name:'管理员2',
+			       		state:'启用',
+			       		xuhao:5,
+			       		time:'2014-07-24 16:35'
+
+
+			       	}
+
+	       	];
+            
+	       	$scope.clickfn=function(str){
+	       		$scope.data.splice(str,1);
+
+
+	       	}
+	       	$scope.fn=function(){
+	       		
+	       		$scope.con = $scope.msg;
+
+
+	       	}
+
+	       }])
+</script>
+
+</html>
